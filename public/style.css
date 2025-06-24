@@ -1,0 +1,15 @@
+body {
+  background: #f8f9fa;
+  padding-top: 70px;
+}
+textarea.conf {
+  font-family: monospace;
+  font-size: 0.85rem;
+  white-space: pre;
+}
+.navbar {
+  transition: box-shadow 0.3s ease;
+}
+.navbar.scrolled {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}

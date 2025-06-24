@@ -1,0 +1,19 @@
+{
+  "name": "wg-config-bootstrap",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express": "^4.19.2",
+    "ip-cidr": "^3.0.0",
+    "jszip": "^3.10.1",
+    "morgan": "^1.10.0",
+    "tweetnacl": "^1.0.3",
+    "uuid": "^9.0.1"
+  }
+}

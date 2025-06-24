@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>QR Code Generator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html"><i class="fas fa-shield-alt me-1"></i>WireGuard Config</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown">Language</a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="langDropdown">
+              <li><a class="dropdown-item" href="qr_ja.html">日本語</a></li>
+              <li><a class="dropdown-item" href="qr_en.html">English</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i>ホーム</a></li>
+          <li class="nav-item"><a class="nav-link active" href="qr.html"><i class="fas fa-qrcode me-1"></i>QR Code Generator</a></li>
+          <li class="nav-item"><a class="nav-link" href="privacy.html"><i class="fas fa-file-alt me-1"></i>プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container py-5 mt-5">
+    <h1 class="mb-4 text-center"><i class="fas fa-qrcode me-2"></i>QR Code Generator</h1>
+    <p>This tool allows you to easily convert a wireguard config file into a QR code.</p>
+    <p>QR codes are generated client-side by your browser and are never seen by our server.</p>
+    <div class="mb-3">
+      <label class="form-label">Paste WireGuard Config</label>
+      <textarea id="config-input" class="form-control" rows="6" placeholder="[Interface]..."></textarea>
+    </div>
+    <div class="text-end mb-4">
+      <button id="generate-btn" class="btn btn-primary"><i class="fas fa-play me-1"></i> Generate QR</button>
+    </div>
+    <div id="qr-display" class="text-center"></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('generate-btn').addEventListener('click', () => {
+      const txt = document.getElementById('config-input').value;
+      document.getElementById('qr-display').innerHTML = '';
+      new QRCode(document.getElementById('qr-display'), { text: txt, width:256, height:256 });
+    });
+  </script>
+
+<footer class="bg-light text-center py-4 mt-5">
+  <div class="container">
+    <small>&copy; 2025 WireGuard Config Generator</small>
+  </div>
+</footer>
+
+</body>
+</html>
