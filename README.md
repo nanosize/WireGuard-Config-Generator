@@ -1,7 +1,7 @@
 # WireGuard Configuration Generator
 
-[![MIT License](https://img.shields.io/badge/license-other-brightgreen)](LICENSE)
-[![Release](https://img.shields.io/badge/User-nanosize-blue.svg)
+[![MIT License](https://img.shields.io/badge/license-other-brightgreen)]([LICENSE](https://github.com/nanosize/WireGuard-Config-Generator/blob/main/LICENCE))
+[![Release](https://img.shields.io/badge/User-nanosize-blue.svg)](https://github.com/nanosize)
 
 ## Overview
 
