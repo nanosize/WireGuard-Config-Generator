@@ -101,6 +101,7 @@ yarn test
 4. Push to your branch (`git push origin feature/your-feature`).
 5. Submit a Pull Request.
 
-## License
+# License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [# No Derivatives, Non-Production Source-Available License Version 1.0](LICENSE).
+
