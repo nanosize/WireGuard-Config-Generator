@@ -20,12 +20,6 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: known_hosts の登録
-        run: |
-          mkdir -pv "$HOME/.ssh"
-          ssh-keyscan -H "${{ secrets.SERVER_HOST }}" >> "$HOME/.ssh/known_hosts"
-        shell: bash
-
       - name: rsync で /public をデプロイ
         run: |
           rsync -avz --delete \
