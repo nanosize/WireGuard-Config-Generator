@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use - WireGuard Config Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div data-include="partials/header.html"></div>
+    <main class="container my-5">
+        <h1>How to Use</h1>
+        <p>This tool helps you generate WireGuard server and client configuration files quickly and easily. QR codes are generated for each client.</p>
+        <ul>
+            <li><strong>Number of Clients:</strong> Specify how many client peers you need.</li>
+            <li><strong>Network CIDR:</strong> Enter the CIDR block for your VPN network (e.g., <code>10.0.0.0/24</code>).</li>
+            <li><strong>Listen Port:</strong> The UDP port the server will listen on (default: 51820).</li>
+            <li><strong>Server Public Endpoint:</strong> Your server's public IP or domain with port.</li>
+            <li><strong>DNS:</strong> Optional DNS server for clients.</li>
+            <li><strong>Preshared Key:</strong> A random key is generated and you can modify it.</li>
+        </ul>
+        <p>After clicking <strong>Generate</strong>, you can download individual config files, view QR codes, or download all files as a ZIP.</p>
+    </main>
+    <div data-include="partials/footer.html"></div>
+    <script src="js/include-html.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
