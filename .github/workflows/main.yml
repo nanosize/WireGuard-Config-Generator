@@ -4,7 +4,7 @@ name: Deploy wgconf via RSYNC
 on:
   push:
     branches:
-      - main  # main ブランチにプッシュされたときに実行
+      - main  # main ブランチへのプッシュをトリガーに
 
 jobs:
   deploy:
@@ -12,23 +12,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: リポジトリをチェックアウト
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: SSH 鍵をセットアップ
-        uses: webfactory/ssh-agent@v0.8.2
+      - name: Setup SSH agent
+        uses: webfactory/ssh-agent@v0.8.1
         with:
+          # SSH_PRIVATE_KEY シークレットを読み込む
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Known Hosts を登録（必要に応じて）
+      - name: Add server to known_hosts
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
-      - name: rsync で /public を /var/www/html/wgconf に同期
+      - name: Rsync /public to remote
         run: |
           rsync -avz --delete \
             -e "ssh -o StrictHostKeyChecking=yes" \
             public/ \
-            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/var/www/html/wgconf
-
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.DEPLOY_DIR }}
