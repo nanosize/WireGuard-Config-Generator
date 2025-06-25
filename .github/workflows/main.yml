@@ -6,6 +6,10 @@ on:
     branches:
       - main
 
+env:
+  # PORT を環境変数に設定
+  PORT: ${{ secrets.PORT }}
+
 jobs:
   deploy:
     name: Rsync Deploy to Web Server
@@ -23,14 +27,13 @@ jobs:
       - name: known_hosts の登録
         run: |
           mkdir -pv "$HOME/.ssh"
-          # ポートを指定してホスト鍵を取得
-          ssh-keyscan -p "${{ secrets.PORT }}" -H "${{ secrets.SERVER_HOST }}" >> "$HOME/.ssh/known_hosts"
+          ssh-keyscan -p "$PORT" -H "${{ secrets.SERVER_HOST }}" >> "$HOME/.ssh/known_hosts"
         shell: bash
 
       - name: rsync で /public をデプロイ
         run: |
           rsync -avz --delete \
-            -e "ssh -p ${ { secrets.PORT } } -o StrictHostKeyChecking=yes" \
+            -e "ssh -p $PORT -o StrictHostKeyChecking=yes" \
             public/ \
             "${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.DEPLOY_DIR }}"
         shell: bash
