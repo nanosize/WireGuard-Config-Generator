@@ -1,0 +1,34 @@
+# ファイル: .github/workflows/deploy.yml
+name: Deploy wgconf via RSYNC
+
+on:
+  push:
+    branches:
+      - main  # main ブランチにプッシュされたときに実行
+
+jobs:
+  deploy:
+    name: Rsync Deploy to Web Server
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+
+      - name: SSH 鍵をセットアップ
+        uses: webfactory/ssh-agent@v0.8.2
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Known Hosts を登録（必要に応じて）
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: rsync で /public を /var/www/html/wgconf に同期
+        run: |
+          rsync -avz --delete \
+            -e "ssh -o StrictHostKeyChecking=yes" \
+            public/ \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/var/www/html/wgconf
+
