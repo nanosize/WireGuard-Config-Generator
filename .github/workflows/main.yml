@@ -20,10 +20,17 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: known_hosts の登録
+        run: |
+          mkdir -pv "$HOME/.ssh"
+          # ポートを指定してホスト鍵を取得
+          ssh-keyscan -p "${{ secrets.PORT }}" -H "${{ secrets.SERVER_HOST }}" >> "$HOME/.ssh/known_hosts"
+        shell: bash
+
       - name: rsync で /public をデプロイ
         run: |
           rsync -avz --delete \
-            -e "ssh -o StrictHostKeyChecking=yes" \
+            -e "ssh -p ${ { secrets.PORT } } -o StrictHostKeyChecking=yes" \
             public/ \
             "${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.DEPLOY_DIR }}"
         shell: bash
