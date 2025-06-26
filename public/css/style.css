@@ -11,3 +11,12 @@ h1 {
 /* ───────────────────────────────────────────
    3.  ロゴアイコン
 ─────────────────────────────────────────── */
+/* ───────────────────────────────────────────
+   Buy Me a Coffee ボタンのスタイル調整
+─────────────────────────────────────────── */
+.navbar-nav .bmc-button {
+  display: inline-block !important;   /* インライン要素に */
+  vertical-align: middle !important;  /* 垂直中央揃え */
+  margin-left: 0.75rem !important;    /* 左余白 */
+  margin-top: 0.15rem !important;     /* 若干の上下余白 */
+}
